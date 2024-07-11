@@ -19,3 +19,4 @@
 <link rel="icon" href="{{ asset('favicon.ico') }}" />
 
 @vite('resources/css/app.css')
+@stack('head')
