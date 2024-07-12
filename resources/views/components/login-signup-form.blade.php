@@ -1,8 +1,8 @@
 <div class="box">
     <h4>Member Login / Sign up</h4>
-    <form action="" method="post" name="login" id="login">
+    <form action="{{ route('login') }}" method="post" name="login" id="login">
         @csrf
-        <input name="client_id" type="hidden" value="" />
+        <input name="client_id" type="hidden" value="{{ Config::string('app.url') }}" />
         <table>
             <tbody>
                 <tr class="email">
@@ -38,13 +38,25 @@
                 <tr>
                     <td></td>
                     <td>
-                        <button type="submit" class="login_btn" name="action" value="login">Login</button>
-                        <button type="button" class="signup_btn" name="action" value="signup" onclick="">Sign Up</button>
+                        <button
+                            type="submit"
+                            class="login_btn"
+                            name="action"
+                            value="login"
+                        >Login</button>
+
+                        <button
+                            type="button"
+                            class="signup_btn"
+                            name="action"
+                            value="signup"
+                            onclick="location.href='/'"
+                        >Sign Up</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </form>
 
-    <a href="" class="forgot">Forgot your password?</a>
+    <a href="#" class="forgot">Forgot your password?</a>
 </div>
