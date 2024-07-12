@@ -26,17 +26,17 @@
                     @endguest
                 </ul>
             </div>
-
-            <ul class="links">
-                @foreach (Config::array('openspace.pages') as $name => $route)
-                    @php $css = active($route, 'active'); @endphp
-                    <li class="{{ $css }}">
-                        <a href="{{ $route }}">
-                            {{ $name }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
         </div>
+
+        <ul class="links">
+            @foreach (Config::array('openspace.pages') as $name => $route)
+                @php $css = active($route, 'active'); @endphp
+                <li class="{{ $css }}">
+                    <a href="{{ $route }}">
+                        {{ $name }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
     </nav>
 </header>
