@@ -1,5 +1,8 @@
 <?php
 
+use PHPUnit\Framework\TestCase as BaseTestCase;
+use Tests\TestCase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,10 +14,8 @@
 |
 */
 
-uses(
-    Tests\TestCase::class,
-    // Illuminate\Foundation\Testing\RefreshDatabase::class,
-)->in('Feature');
+uses(TestCase::class)->in('Feature');
+uses(BaseTestCase::class)->in('Unit');
 
 /*
 |--------------------------------------------------------------------------
