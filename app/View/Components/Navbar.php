@@ -3,14 +3,24 @@
 namespace App\View\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\View\Component;
 
 class Navbar extends Component
 {
+    /**
+     * The key that can be used to bust the navbar cache.
+     */
     public const string NAVBAR_KEY = 'navbar_key';
+
+    /**
+     * Busts the navbar cache and forces it to reload.
+     */
+    public static function reset(): void
+    {
+        Cache::forget(self::NAVBAR_KEY);
+    }
 
     /**
      * Get the view / contents that represent the component.
