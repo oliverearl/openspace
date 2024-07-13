@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
  * Guest routes
+ * NB: Some authentication routes are provided by Laravel Fortify.
  */
 Route::middleware(['guest'])->group(function (): void {
     Route::get('/', HomepageController::class)->name('homepage');
