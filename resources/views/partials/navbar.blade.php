@@ -2,7 +2,7 @@
     <nav>
         <div class="top">
             <div class="left">
-                <a href="">{{ Config::string('app.name') }} | Home</a>
+                <a href="{{ homepage_route() }}">{{ Config::string('app.name') }} | Home</a>
             </div>
 
             <div class="center">
@@ -18,25 +18,16 @@
                 <ul class="topnav signup">
                     <a href="">Help</a> |
                     @guest
-                        <a href="">LogIn</a> |
-                        <a href="">SignUp</a>
+                        <a href="{{ route('login') }}">Log in</a> |
+                        <a href="{{ route('register') }}">Register</a>
 
                     @else
-                        <a href="">LogOut</a>
+                        <a href="{{ route('logout') }}">Log out</a>
                     @endguest
                 </ul>
             </div>
         </div>
 
-        <ul class="links">
-            @foreach (Config::array('openspace.pages') as $name => $route)
-                @php $css = active($route, 'active'); @endphp
-                <li class="{{ $css }}">
-                    <a href="{{ $route }}">
-                        {{ $name }}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
+        <x-navbar />
     </nav>
 </header>
