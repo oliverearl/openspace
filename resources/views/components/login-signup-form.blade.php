@@ -50,7 +50,7 @@
                             class="signup_btn"
                             name="action"
                             value="signup"
-                            onclick="location.href='/'"
+                            onclick="location.href='{!! route('register') !!}'"
                         >Sign Up</button>
                     </td>
                 </tr>
@@ -58,5 +58,5 @@
         </table>
     </form>
 
-    <a href="#" class="forgot">Forgot your password?</a>
+    <a href="{{ route('password.request') }}" class="forgot">Forgot your password?</a>
 </div>
