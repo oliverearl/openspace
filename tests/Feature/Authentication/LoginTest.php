@@ -2,6 +2,19 @@
 
 use App\Models\User;
 
+it('can render the login page', function (): void {
+   $this->assertGuest();
+
+   $this->get(route('login'))->assertOk();
+});
+
+it('will redirect elsewhere if trying to access the login page whilst authenticated', function (): void {
+   $user = User::factory()->create();
+   $this->actingAs($user);
+
+   $this->get(route('login'))->assertRedirectToRoute('home');
+});
+
 it('can log into an account', function (): void {
     $user = User::factory()->create();
 
