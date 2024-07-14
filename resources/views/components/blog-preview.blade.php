@@ -1,4 +1,4 @@
-<div class="blog-preview col">
+<aside class="blog-preview col">
     <h4>Your latest blog entries [<a href="">New entry</a>]</h4>
     @forelse($posts as $post)
         <p>
@@ -10,4 +10,4 @@
             <em>There are no blog entries yet.</em>
         </p>
     @endforelse
-</div>
+</aside>
