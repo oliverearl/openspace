@@ -66,6 +66,8 @@
         </div>
     </div>
 
+    <x-info-area />
+
     <div class="row info-area">
         <div class="col info-box">
             <h3>Retro Social</h3>
