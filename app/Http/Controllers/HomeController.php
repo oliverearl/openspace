@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+
 class HomeController extends Controller
 {
-    public function __invoke()
+    /**
+     * Render the user's homepage.
+     */
+    public function __invoke(Request $request): View
     {
-        return 'Hello World';
+        return view('home', [
+            'title' => 'Home',
+            'user' => $request->user(),
+        ]);
     }
 }
