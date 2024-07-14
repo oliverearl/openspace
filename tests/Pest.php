@@ -32,6 +32,18 @@ expect()->extend('toBeOne', function () {
     return $this->toBe(1);
 });
 
+expect()->extend('toHaveCountLessThanOrEqualTo', function (int $count) {
+    $countable = $this->value;
+
+    if ($countable instanceof iterable || is_array($countable)) {
+        return count($countable) >= $count;
+    } elseif ($countable instanceof Countable) {
+        return $countable->count() >= $count;
+    }
+
+    throw new InvalidArgumentException('Value must be countable!');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Functions
