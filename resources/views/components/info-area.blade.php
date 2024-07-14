@@ -6,6 +6,7 @@
                 {!! $cell->description !!}
             </p>
             <p class="link">
+                &raquo;
                 <a href="{{ $cell->destination }}" title="{{ $cell->link }}">
                     {{ $cell->link }}
                 </a>
