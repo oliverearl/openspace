@@ -33,7 +33,7 @@ class InfoBoxFactory extends Factory
     public function nonperishable(): Factory
     {
         return $this->state(fn(): array => [
-           'active_to' => null,
+            'active_to' => null,
         ]);
     }
 }

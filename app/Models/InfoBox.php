@@ -49,9 +49,9 @@ class InfoBox extends Model
         return $query
             ->whereDate('active_from', '<=', $now)
             ->where(function (Builder $query) use ($now): void {
-               $query
-                   ->whereNull('active_to')
-                   ->orWhereDate('active_to', '>=', $now);
+                $query
+                    ->whereNull('active_to')
+                    ->orWhereDate('active_to', '>=', $now);
             });
     }
 }

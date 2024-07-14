@@ -4,7 +4,7 @@ use App\Models\InfoBox;
 use App\Repositories\InfoBoxRepository;
 
 beforeEach(function (): void {
-   $this->repository = new InfoBoxRepository();
+    $this->repository = new InfoBoxRepository();
 });
 
 it('can retrieve info boxes for the frontpage', function (): void {

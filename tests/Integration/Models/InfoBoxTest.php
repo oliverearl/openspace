@@ -8,9 +8,9 @@ beforeEach(function (): void {
 });
 
 it('can cast its date fields into carbon objects', function (): void {
-   expect($this->box->active_from)
-       ->toBeInstanceOf(Carbon::class)
-       ->and($this->box->active_to)->toBeInstanceOf(Carbon::class);
+    expect($this->box->active_from)
+        ->toBeInstanceOf(Carbon::class)
+        ->and($this->box->active_to)->toBeInstanceOf(Carbon::class);
 });
 
 it('can scope eloquent queries to only active info boxes', function (): void {
