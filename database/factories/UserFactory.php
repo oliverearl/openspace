@@ -30,6 +30,12 @@ class UserFactory extends Factory
             'email_verified_at' => Carbon::now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'bio' => fake()->sentence(),
+            'status' => fake()->sentence(),
+            'mood' => fake()->sentence(),
+            'views' => fake()->randomNumber(),
+            'last_active_at' => Carbon::now(),
+            'last_logged_in_at' => Carbon::now(),
         ];
     }
 
@@ -40,6 +46,8 @@ class UserFactory extends Factory
     {
         return $this->state(fn(array $attributes): array => [
             'email_verified_at' => null,
+            'last_active_at' => null,
+            'last_logged_in_at' => null,
         ]);
     }
 }
