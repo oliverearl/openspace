@@ -62,7 +62,7 @@ return [
             'url' => env('APP_URL') . '/storage/images',
             'visibility' => 'public',
             'throw' => false,
-        ]
+        ],
 
     ],
 
