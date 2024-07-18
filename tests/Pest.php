@@ -55,7 +55,10 @@ expect()->extend('toHaveCountLessThanOrEqualTo', function (int $count) {
 |
 */
 
-function something()
+/**
+ * Get the path to the test asset folder.
+ */
+function test_asset_path(string $path = ''): string
 {
-    // ..
+    return base_path('tests/Assets/' . $path);
 }
