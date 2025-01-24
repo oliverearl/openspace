@@ -5,7 +5,7 @@
     "keywords": ["social network", "myspace"],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "laravel/fortify": "^1.21",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
