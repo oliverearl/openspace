@@ -103,7 +103,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
 
         return Attribute::make(
             get: fn(): string => homepage_route(),
-        );
+        )->shouldCache();
     }
 
     /**
@@ -118,7 +118,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
                 self::PROFILE_PICTURE_LIBRARY,
                 self::PROFILE_PICTURE_LIBRARY_OPTIMIZED,
             ),
-        );
+        )->shouldCache();
     }
 
     /**
