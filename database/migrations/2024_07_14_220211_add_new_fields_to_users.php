@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->after('remember_token', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table): void {
+            $table->after('remember_token', function (Blueprint $table): void {
                 $table->string('bio')->nullable();
                 $table->string('status')->nullable();
                 $table->string('mood')->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table): void {
             $table->dropColumn([
                 'last_logged_in_at',
                 'last_active_at',
