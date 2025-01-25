@@ -58,6 +58,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'remember_token',
     ];
 
+    /** @inheritDoc */
     protected static function booted(): void
     {
         static::creating(function (User $user): void {

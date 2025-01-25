@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 
 it('can return the correct homepage route for guests', function (): void {

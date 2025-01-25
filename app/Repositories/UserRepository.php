@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories;
 
 use App\Models\User;
@@ -10,7 +12,7 @@ class UserRepository
     /**
      * Return a collection of the latest, verified users that have display pictures.
      *
-     * @return Collection<int, \App\Models\User>
+     * @return \Illuminate\Support\Collection<int, \App\Models\User>
      */
     public function getLatestUsers(int $limit = 6): Collection
     {

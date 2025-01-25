@@ -2,9 +2,10 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
+declare(strict_types=1);
+
 use App\Models\User;
 use App\Repositories\UserRepository;
-use Illuminate\Http\File;
 
 beforeEach(function (): void {
     $this->repository = new UserRepository();
@@ -21,7 +22,7 @@ it('can retrieve the latest verified users with display pictures', function (): 
         ->and($user->last_logged_in_at)->not()->toBeNull()
         ->and($displayPicture)->toBeFile();
 
-    $user->addMedia(new File($displayPicture))
+    $user->addMedia($displayPicture)
         ->preservingOriginal()
         ->toMediaCollection($user::PROFILE_PICTURE_LIBRARY);
 
