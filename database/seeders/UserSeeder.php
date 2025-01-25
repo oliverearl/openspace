@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
+use App\Actions\Users\AddPlaceholderProfilePicture;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -15,9 +18,16 @@ class UserSeeder extends Seeder
         $users = collect();
 
         $users[] = User::factory()->withProfilePicture()->create([
+            'name' => 'Administrator',
             'email' => 'test@example.com',
         ]);
 
-        $users = User::factory()->count(9)->withProfilePicture()->create();
+        $users->merge(
+            User::factory()->count(9)->withProfilePicture()->create(),
+        );
+
+        $users->each(function (User $user): void {
+            AddPlaceholderProfilePicture::run($user);
+        });
     }
 }
