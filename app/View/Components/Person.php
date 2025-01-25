@@ -18,6 +18,8 @@ class Person extends Component
      */
     public function render(): View
     {
-        return view('components.person');
+        return view('components.person', [
+            'user' => $this->user,
+        ]);
     }
 }

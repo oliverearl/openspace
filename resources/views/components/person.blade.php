@@ -1,12 +1,13 @@
 <div class="person">
-    <a href="">
-        <p>Username</p>
+    <a href="{{ $user->profile_url }}">
+        <p>{{ $user->name }}</p>
     </a>
-    <a href="">
+
+    <a href="{{ $user->profile_url }}">
         <img
             class="pfp-fallback"
-            src=""
-            alt="Username"
+            src="{{ $user->profile_picture }}"
+            alt="{{ $user->name }}"
             loading="lazy"
             style="width: 100%; max-height: 95px; aspect-ratio: 1/1;"
         />
