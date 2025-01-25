@@ -48,4 +48,10 @@ describe('attributes', function (): void {
             ->toEqual(1)
             ->and($this->user->profile_picture)->toBeUrl();
     });
+
+    it('will return a default image url if a user has no image assigned to it', function (): void {
+        expect($this->user->media()->count())
+            ->toEqual(0)
+            ->and($this->user->profile_picture)->toBeUrl();
+    });
 });
