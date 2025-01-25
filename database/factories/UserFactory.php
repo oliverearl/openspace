@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
+use App\Actions\Users\AddPlaceholderProfilePicture;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -26,6 +30,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'uuid' => fake()->uuid(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => Carbon::now(),
             'password' => static::$password ??= Hash::make('password'),
@@ -49,5 +54,15 @@ class UserFactory extends Factory
             'last_active_at' => null,
             'last_logged_in_at' => null,
         ]);
+    }
+
+    /**
+     * Produces a user with an associated profile picture.
+     */
+    public function withProfilePicture(): static
+    {
+        return $this->afterCreating(function (User $user): void {
+            AddPlaceholderProfilePicture::run($user);
+        });
     }
 }

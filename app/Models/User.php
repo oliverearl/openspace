@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -54,21 +58,11 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected static function booted(): void
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-            'last_active_at' => 'immutable_datetime',
-            'last_logged_in_at' => 'immutable_datetime',
-            'created_at' => 'immutable_datetime',
-            'updated_at' => 'immutable_datetime',
-        ];
+        static::creating(function (User $user): void {
+            $user->uuid ??= Str::uuid()->toString();
+        });
     }
 
     /**
@@ -86,7 +80,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
                 'image/webp',
             ])
             ->useDisk('media')
-            ->withResponsiveImages()
             ->useFallbackUrl(asset('images/default.jpg'))
             ->useFallbackUrl(asset('images/default.jpg'), self::PROFILE_PICTURE_LIBRARY_OPTIMIZED)
             ->registerMediaConversions(function (): void {
@@ -96,5 +89,51 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
                     ->format('webp')
                     ->optimize();
             });
+    }
+
+    /**
+     * Get the user's profile URL.
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute<string, never>
+     */
+    protected function profileUrl(): Attribute
+    {
+        // TODO: Return actual profile URL.
+
+        return Attribute::make(
+            get: fn(): string => homepage_route(),
+        );
+    }
+
+    /**
+     * Get the user's profile picture.
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute<string, never>
+     */
+    protected function profilePicture(): Attribute
+    {
+        return Attribute::make(
+            get: fn(): string => $this->getFirstMediaUrl(
+                self::PROFILE_PICTURE_LIBRARY,
+                self::PROFILE_PICTURE_LIBRARY_OPTIMIZED,
+            ),
+        );
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'last_active_at' => 'immutable_datetime',
+            'last_logged_in_at' => 'immutable_datetime',
+            'created_at' => 'immutable_datetime',
+            'updated_at' => 'immutable_datetime',
+        ];
     }
 }
