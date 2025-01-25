@@ -424,7 +424,12 @@ footer .copyright {
 
 .new-people .top,
 .new-people .inner {
-    padding: 4px 8px;
+    display: flex;
+    flex-wrap: wrap; /* Wrap content to prevent scrollbars */
+    justify-content: center;
+    gap: 15px; /* Consistent spacing */
+    max-width: 100%; /* Prevent overflowing */
+    overflow: hidden; /* Prevent scrollbars */
 }
 
 .new-people h4,
@@ -447,11 +452,28 @@ footer .copyright {
 }
 
 .new-people .person {
-    margin: 5px 10px;
-    width: 80px;
-    min-height: 100px;
-    display: inline-block;
-    align-self: flex-end;
+    display: flex;
+    flex-direction: column; /* Stack image and name */
+    align-items: center; /* Center-align content */
+    text-align: center; /* Center text */
+    width: 100px; /* Consistent width for all cards */
+}
+
+.new-people .person p {
+    margin-top: 8px; /* Space between image and text */
+    font-size: 14px;
+    line-height: 1.2;
+    height: auto; /* Allow wrapping for long names */
+    word-wrap: break-word; /* Prevent breaking outside container */
+    text-align: center;
+}
+
+.new-people .person img {
+    width: 80px; /* Consistent size for images */
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%; /* Circular images */
+    margin-bottom: 5px; /* Space below the image */
 }
 
 .new-people .person img:not(.icon) {
@@ -2773,6 +2795,21 @@ blink {
     .col, .col.right, .col.w-40, .col.w-60 {
         width: 100%;
         margin: 0 auto; /* Adjust margin as needed */
+    }
+}
+
+@media (max-width: 768px) {
+    .new-people .inner {
+        gap: 10px; /* Adjust spacing for smaller screens */
+    }
+
+    .new-people .person {
+        width: 90px; /* Reduce width for smaller screens */
+    }
+
+    .new-people .person img {
+        width: 70px; /* Reduce image size */
+        height: 70px;
     }
 }
 

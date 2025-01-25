@@ -5,7 +5,6 @@
 
     <a href="{{ $user->profile_url }}">
         <img
-            class="pfp-fallback"
             src="{{ $user->profile_picture }}"
             alt="{{ $user->name }}"
             loading="lazy"

@@ -49,7 +49,7 @@ class NewPeople extends Component
     {
         return Cache::rememberForever(
             self::NEW_PEOPLE_KEY,
-            fn(): Collection => $this->repository->getLatestUsers(),
+            fn(): Collection => $this->repository->getLatestUsers(8),
         );
     }
 }
